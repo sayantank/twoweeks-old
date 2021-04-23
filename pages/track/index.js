@@ -15,12 +15,14 @@ import React from "react";
 import RecordCard from "../../components/RecordCard";
 
 export default function Track() {
-  const router = useRouter();
+  const [disabled, setDisabled] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   const [session, loading] = useSession();
   const queryClient = useQueryClient();
-  const { isLoading, error, data } = useQuery("records", () =>
-    axios.get(`/api/record/get`)
+  const { isLoading, error, data } = useQuery(
+    "records",
+    () => axios.get(`/api/record/get`),
+    { retry: 2 }
   );
 
   const mutation = useMutation(
@@ -28,12 +30,17 @@ export default function Track() {
       return axios.post("/api/record/add", { data: credentials });
     },
     {
+      onMutate: () => {
+        setDisabled(true);
+      },
       onSuccess: () => {
         queryClient.invalidateQueries("records");
         toast.success("Successfully added record.");
+        setDisabled(false);
       },
       onError: (e) => {
         toast.error(e.response.data.message);
+        setDisabled(false);
       },
     }
   );
@@ -240,8 +247,11 @@ export default function Track() {
                 </div>
               </div>
               <button
+                disabled={disabled}
                 type="submit"
-                className="bg-green-400 hover:bg-green-500 transition-colors px-4 py-2 rounded-md text-white font-bold focus:outline-none"
+                className={`${
+                  disabled ? "bg-gray-400" : "bg-green-400 hover:bg-green-500"
+                } transition-colors px-4 py-2 rounded-md text-white font-bold focus:outline-none`}
               >
                 Add record
               </button>
