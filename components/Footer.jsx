@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { GitHub, Twitter } from "react-feather";
 
 const Footer = () => {
@@ -22,6 +23,14 @@ const Footer = () => {
           <Twitter />
         </a>
       </div>
+      <Link href="/privacy">
+        <a
+          className="font-semibold text-sm hover:underline underline lg:no-underline text-gray-800"
+          href="/privacy"
+        >
+          Privacy Policy
+        </a>
+      </Link>
       <p className="font-semibold text-gray-800">
         <a
           href="https://sayantank.vercel.app"
