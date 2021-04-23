@@ -37,12 +37,14 @@ export default function TrackUser({ records, user }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { uid } = context.params;
   const { db } = await connectToDatabase();
   const user = await db
     .collection("users")
     .findOne({ _id: ObjectId(uid) }, { projection: { _id: 1, name: 1 } });
+
+  console.log(user);
   user._id = user._id.toString();
   const recordDocs = await db
     .collection("records")
@@ -68,25 +70,25 @@ export async function getStaticProps(context) {
   };
 }
 
-export async function getStaticPaths() {
-  const { db } = await connectToDatabase();
-  const cursor = await db
-    .collection("users")
-    .find({}, { projection: { _id: 1, name: 1 } });
-  const pathArray = [];
-  if (cursor.count() === 0) {
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
+// export async function getStaticPaths() {
+//   const { db } = await connectToDatabase();
+//   const cursor = await db
+//     .collection("users")
+//     .find({}, { projection: { _id: 1, name: 1 } });
+//   const pathArray = [];
+//   if (cursor.count() === 0) {
+//     return {
+//       paths: [],
+//       fallback: false,
+//     };
+//   }
 
-  await cursor.forEach((doc) => {
-    pathArray.push({ params: { uid: doc._id.toString() } });
-  });
+//   await cursor.forEach((doc) => {
+//     pathArray.push({ params: { uid: doc._id.toString() } });
+//   });
 
-  return {
-    paths: pathArray,
-    fallback: false, // See the "fallback" section below
-  };
-}
+//   return {
+//     paths: pathArray,
+//     fallback: false, // See the "fallback" section below
+//   };
+// }
