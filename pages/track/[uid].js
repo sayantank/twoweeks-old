@@ -19,7 +19,7 @@ export default function TrackUser({ records, user }) {
           onClick={() => router.push("/")}
           className="text-4xl font-semibold text-green-400 cursor-pointer"
         >
-          Recover
+          TwoWeeks
         </h1>
         <div className="flex flex-col space-y-2">
           <h2 className="text-gray-800 font-medium">Patient Name</h2>
