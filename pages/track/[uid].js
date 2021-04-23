@@ -17,7 +17,7 @@ export default function TrackUser({ records, user }) {
       <div className="w-full flex flex-col space-y-8">
         <h1
           onClick={() => router.push("/")}
-          className="text-4xl font-semibold text-green-400 cursor-pointer"
+          className="text-4xl font-semibold text-blue-500 cursor-pointer"
         >
           TwoWeeks
         </h1>

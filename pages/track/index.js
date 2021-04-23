@@ -90,7 +90,7 @@ export default function Track() {
       <Layout>
         <div className="flex flex-col w-full space-y-8">
           <div className="w-full flex justify-between">
-            <h1 className="text-4xl font-semibold text-green-400">TwoWeeks</h1>
+            <h1 className="text-4xl font-semibold text-blue-500">TwoWeeks</h1>
             <button
               onClick={() => {
                 signOut({ callbackUrl: "/" });

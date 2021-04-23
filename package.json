@@ -2,7 +2,7 @@
   "name": "twoweeks",
   "version": "0.0.0",
   "private": true,
-  "description": "A Recovery Tracker for COVID-19 Patients",
+  "description": "A recovery tracker for COVID-19 patients at home.",
   "repository": "https://github.com/sayantank/twoweeks.git",
   "scripts": {
     "dev": "next",
@@ -17,6 +17,7 @@
     "mongodb": "^3.6.6",
     "next": "^10.0.7",
     "next-auth": "latest",
+    "next-seo": "^4.24.0",
     "react": "^17.0.1",
     "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^17.0.1",
