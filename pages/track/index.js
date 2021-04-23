@@ -32,11 +32,19 @@ export default function Track() {
         queryClient.invalidateQueries("records");
         toast.success("Successfully added record.");
       },
-      onError: () => {
-        toast.error("Error occured. Contact us.");
+      onError: (e) => {
+        toast.error(e.response.data.message);
       },
     }
   );
+
+  const validateTemp = (temp) => {
+    if (isNaN(temp)) return "Invalid Temperature";
+    if (Number(temp) < 90 || Number(temp) > 110) {
+      return "Invalid Temperature";
+    }
+    return true;
+  };
 
   const {
     register,
@@ -134,6 +142,7 @@ export default function Track() {
                         value: new RegExp("^(\\d{1,3}|\\d{0,3}\\.\\d{1,2})$"),
                         message: "Invalid Temperature",
                       },
+                      valid: (temp) => validateTemp(temp),
                     })}
                     name="temp"
                     title="Temperature"

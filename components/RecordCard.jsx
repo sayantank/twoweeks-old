@@ -38,12 +38,6 @@ const RecordCard = ({
     axios.delete("/api/record/delete", { data: { id: _id.toString() } })
   );
 
-  React.useEffect(() => {
-    console.log(_id);
-  }, []);
-
-  const onDelete = () => {};
-
   return (
     <li className="flex flex-col space-y-1">
       <div className="w-full flex items-center justify-between">
@@ -63,8 +57,8 @@ const RecordCard = ({
                     queryClient.invalidateQueries("records");
                     toast.success("Record deleted successfully.");
                   },
-                  onError: () => {
-                    toast.error("Error occured. Contact us.");
+                  onError: (e) => {
+                    toast.error(e.response.data.message);
                   },
                 }
               )
