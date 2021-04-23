@@ -18,13 +18,12 @@ export default function Home() {
     <Layout>
       <div className="flex flex-col w-full space-y-8">
         <h1 className="text-4xl font-semibold text-green-400 cursor-pointer">
-          Recover
+          TwoWeeks
         </h1>
         <p className="text-lg font-medium text-gray-800">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut metus
-          ipsum, mollis vitae tincidunt eget, congue in enim. Pellentesque
-          habitant morbi tristique senectus et netus et malesuada fames ac
-          turpis
+          Track your recovery from COVID-19 at home in the midst of this
+          pandemic with TwoWeeks. You can also share your recovery with your
+          doctor with just a link!
         </p>
         {!session && (
           <button
