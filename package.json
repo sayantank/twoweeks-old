@@ -1,29 +1,32 @@
 {
-  "name": "next-auth-example",
+  "name": "twoweeks",
   "version": "0.0.0",
   "private": true,
-  "description": "An example project for NextAuth.js",
-  "repository": "https://github.com/nextauthjs/next-auth-example.git",
-  "bugs": {
-    "url": "https://github.com/nextauthjs/next-auth/issues"
-  },
-  "homepage": "http://next-auth-example.now.sh",
-  "main": "",
+  "description": "A Recovery Tracker for COVID-19 Patients",
+  "repository": "https://github.com/sayantank/twoweeks.git",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
-  "author": "Iain Collins <me@iaincollins.com>",
-  "contributors": [
-    "Balázs Orbán <info@balazsorban.com>"
-  ],
-  "license": "ISC",
+  "author": "Sayantan Karmakar",
   "dependencies": {
+    "@hookform/error-message": "^2.0.0",
+    "axios": "^0.21.1",
+    "mongodb": "^3.6.6",
     "next": "^10.0.7",
     "next-auth": "latest",
     "react": "^17.0.1",
+    "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^17.0.1",
-    "sqlite3": "^5.0.2"
+    "react-feather": "^2.0.9",
+    "react-hook-form": "^7.2.3",
+    "react-query": "^3.13.11",
+    "react-toastify": "^7.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.10",
+    "tailwindcss": "^2.1.1"
   }
 }

@@ -1,9 +1,14 @@
-import { Provider } from 'next-auth/client'
-import './styles.css'
+import { Provider } from "next-auth/client";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
+import "../styles/global.css";
+import "react-toastify/dist/ReactToastify.css";
+
+const queryClient = new QueryClient();
 
 // Use the <Provider> to improve performance and allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
-export default function App ({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
     <Provider
       // Provider options are not required but can be useful in situations where
@@ -21,10 +26,24 @@ export default function App ({ Component, pageProps }) {
         //
         // Note: If a session has expired when keep alive is triggered, all open
         // windows / tabs will be updated to reflect the user is signed out.
-        keepAlive: 0
+        keepAlive: 0,
       }}
-      session={pageProps.session} >
-      <Component {...pageProps} />
+      session={pageProps.session}
+    >
+      <QueryClientProvider client={queryClient}>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+        />
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </Provider>
-  )
+  );
 }
