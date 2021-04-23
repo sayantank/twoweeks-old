@@ -38,7 +38,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Sayantan Karmakar, {new Date().getFullYear}
+          Sayantan Karmakar, {new Date().getFullYear()}
         </a>
       </p>
     </div>
