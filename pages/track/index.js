@@ -102,7 +102,7 @@ export default function Track() {
                 text={`${
                   process.env.NODE_ENV === "development"
                     ? `http://localhost:3000/track/${session.user.uid}`
-                    : `http://localhost:3000/track/${session.user.uid}`
+                    : `http://twoweeks.vercel.app/track/${session.user.uid}`
                 }`}
                 onCopy={() => {
                   setCopied(true);
