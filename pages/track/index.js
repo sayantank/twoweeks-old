@@ -268,7 +268,9 @@ export default function Track() {
                 ))}
               </ul>
             ) : (
-              <h1>no records</h1>
+              <div className="w-full flex items-center">
+                <h1>No records to show.</h1>
+              </div>
             )}
           </div>
         </div>
