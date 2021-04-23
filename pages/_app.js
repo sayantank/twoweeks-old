@@ -74,7 +74,7 @@ export default function App({ Component, pageProps }) {
           }}
           openGraph={{
             type: "website",
-            url: "https://twoweeks.vercel.app",
+            url: "https://twoweeks.co.in",
             title: "TwoWeeks",
             description: "A recovery tracker for COVID-19 patients at home.",
             images: [
