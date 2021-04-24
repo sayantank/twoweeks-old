@@ -80,7 +80,7 @@ const RecordCard = ({
             <h3 className="text-sm text-gray-800 font-medium">Temperature</h3>
             <p
               className={`text-3xl lg:text-3xl ${
-                temp > 97.5 ? "text-red-400" : "text-green-400"
+                temp > 98.6 ? "text-red-400" : "text-green-400"
               } font-semibold`}
             >
               {temp}
