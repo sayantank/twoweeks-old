@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { GitHub, Twitter } from "react-feather";
+import { GitHub, Twitter, Coffee } from "react-feather";
 
 const Footer = () => {
   return (
@@ -21,6 +21,14 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           <Twitter />
+        </a>
+        <a
+          href="https://www.buymeacoffee.com/sayantank"
+          className="text-gray-800 text-xl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Coffee />
         </a>
       </div>
       <Link href="/privacy">
