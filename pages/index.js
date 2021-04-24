@@ -24,7 +24,8 @@ export default function Home() {
           Track your recovery from COVID-19 at home in the midst of this
           pandemic with{" "}
           <span className="font-semibold text-blue-500">TwoWeeks</span>. You can
-          also share your recovery with your doctor with just a link!
+          also share your recovery with your doctor, family and friends with
+          just a link!
         </p>
         {!session && (
           <button
