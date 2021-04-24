@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn, useSession } from "next-auth/client";
 
 import Layout from "../components/Layout";
 
@@ -35,12 +35,12 @@ export default function Home() {
           </button>
         )}
         <div className="flex flex-col space-y-4">
-          <h2 className="text-xl text-gray-800 font-semibold">
+          <h2 className="text-lg text-gray-800 font-semibold">
             Other resources
           </h2>
           <ul>
             <li className="flex flex-col space-y-2">
-              <h3 className="text-lg text-gray-800 font-medium hover:underline underline lg:no-underline">
+              <h3 className="text-gray-800 font-medium hover:underline underline lg:no-underline">
                 <a
                   href="https://covidhelpers.co.in"
                   target="_blank"
@@ -49,24 +49,13 @@ export default function Home() {
                   CovidHelpers
                 </a>
               </h3>
-              <p>
+              <p className="text-sm">
                 Find the latest help and resources that has been verified by the
                 Twitter community as per your location and requirements.
               </p>
-              <p className="text-lg text-gray-400">
-                By{" "}
-                <a
-                  className="hover:underline underline lg:no-underline text-gray-500"
-                  href="https://twitter.com/nxmxnjxxn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Naman Jain
-                </a>
-              </p>
             </li>
           </ul>
-          <p className="text-gray-400">
+          <p className="text-sm text-gray-400">
             Contact me on{" "}
             <a
               className="hover:underline underline lg:no-underline text-gray-500"

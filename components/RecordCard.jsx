@@ -20,7 +20,17 @@ const months = [
 ];
 
 const formatDate = (date) => {
-  return `${date.getDay()} ${months[date.getMonth()]}, ${date.getFullYear()}`;
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutues = "0" + minutes;
+  }
+  return `${hours}:${minutes}, ${date.getDay()} ${
+    months[date.getMonth()]
+  }, ${date.getFullYear()}`;
 };
 
 const RecordCard = ({
@@ -32,7 +42,7 @@ const RecordCard = ({
   _id,
   canDelete,
 }) => {
-  const [dateTime, setDateTime] = React.useState(new Date(createdAt));
+  const [dateTime, _] = React.useState(new Date(createdAt));
   const queryClient = useQueryClient();
   const mutation = useMutation(() =>
     axios.delete("/api/record/delete", { data: { id: _id.toString() } })
@@ -42,9 +52,7 @@ const RecordCard = ({
     <li className="flex flex-col space-y-1">
       <div className="w-full flex items-center justify-between">
         <p className="text-lg text-gray-400 font-medium">
-          {`${dateTime.getHours()}:${dateTime.getMinutes()}, ${formatDate(
-            dateTime
-          )} `}
+          {formatDate(dateTime)}
         </p>
         {canDelete && (
           <Trash2
