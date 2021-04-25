@@ -44,7 +44,15 @@ export async function getServerSideProps(context) {
     .collection("users")
     .findOne({ _id: ObjectId(uid) }, { projection: { _id: 1, name: 1 } });
 
-  console.log(user);
+  if (!user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+
   user._id = user._id.toString();
   const recordDocs = await db
     .collection("records")
