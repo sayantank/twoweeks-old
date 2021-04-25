@@ -20,7 +20,7 @@ const handler = async (req, res) => {
       .toArray();
     return res
       .status(200)
-      .json({ message: "Successfully got records.", data: records });
+      .json({ message: "Successfully got records.", records });
   } catch (e) {
     console.log(e);
     return res.status(400).json({ message: "Internal Server Error." });

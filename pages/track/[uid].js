@@ -9,9 +9,6 @@ import React from "react";
 export default function TrackUser({ records, user }) {
   const router = useRouter();
 
-  React.useEffect(() => {
-    console.log(records);
-  }, []);
   return (
     <Layout>
       <div className="w-full flex flex-col space-y-8">
@@ -38,44 +35,52 @@ export default function TrackUser({ records, user }) {
 }
 
 export async function getServerSideProps(context) {
-  const { uid } = context.params;
-  const { db } = await connectToDatabase();
-  const user = await db
-    .collection("users")
-    .findOne({ _id: ObjectId(uid) }, { projection: { _id: 1, name: 1 } });
+  try {
+    const { uid } = context.params;
+    const { db } = await connectToDatabase();
+    const user = await db
+      .collection("users")
+      .findOne({ _id: ObjectId(uid) }, { projection: { _id: 1, name: 1 } });
 
-  if (!user) {
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/invalid",
+        },
+      };
+    }
+    user._id = user._id.toString();
+    const recordDocs = await db
+      .collection("records")
+      .find({ user_id: ObjectId(uid) }, { projection: { _id: 0, user_id: 0 } })
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    const records = recordDocs.map((doc) =>
+      Object.assign(
+        {},
+        {
+          temp: doc.temp,
+          oxygen: doc.oxygen,
+          smell: doc.smell,
+          taste: doc.taste,
+          createdAt: doc.createdAt.toString(),
+        }
+      )
+    );
+
+    return {
+      props: { records, user }, // will be passed to the page component as props
+    };
+  } catch (e) {
     return {
       redirect: {
         permanent: false,
-        destination: "/",
+        destination: "/invalid",
       },
     };
   }
-
-  user._id = user._id.toString();
-  const recordDocs = await db
-    .collection("records")
-    .find({ user_id: ObjectId(uid) }, { projection: { _id: 0, user_id: 0 } })
-    .sort({ createdAt: -1 })
-    .toArray();
-
-  const records = recordDocs.map((doc) =>
-    Object.assign(
-      {},
-      {
-        temp: doc.temp,
-        oxygen: doc.oxygen,
-        smell: doc.smell,
-        taste: doc.taste,
-        createdAt: doc.createdAt.toString(),
-      }
-    )
-  );
-
-  return {
-    props: { records, user }, // will be passed to the page component as props
-  };
 }
 
 // export async function getStaticPaths() {

@@ -10,10 +10,6 @@ export default function Home() {
 
   if (typeof window !== "undefined" && loading) return null;
 
-  if (session) {
-    router.push("/track");
-  }
-
   return (
     <Layout>
       <div className="flex flex-col w-full space-y-8">
@@ -27,14 +23,12 @@ export default function Home() {
           also share your recovery with your doctor, family and friends with
           just a link!
         </p>
-        {!session && (
-          <button
-            onClick={() => signIn()}
-            className="px-4 py-2 bg-green-400 hover:bg-green-500 transition-colors text-white font-semibold rounded-md w-max focus:outline-none"
-          >
-            Track your recovery
-          </button>
-        )}
+        <button
+          onClick={session ? () => router.push("/track") : () => signIn()}
+          className="px-4 py-2 bg-green-400 hover:bg-green-500 transition-colors text-white font-semibold rounded-md w-max focus:outline-none"
+        >
+          Track your recovery
+        </button>
         <div className="flex flex-col space-y-4">
           <h2 className="text-lg text-gray-800 font-semibold">
             Other resources
