@@ -24,7 +24,11 @@ export default function Home() {
           just a link!
         </p>
         <button
-          onClick={session ? () => router.push("/track") : () => signIn()}
+          onClick={
+            session
+              ? () => router.push("/track")
+              : () => signIn({ callbackUrl: "/track" })
+          }
           className="px-4 py-2 bg-green-400 hover:bg-green-500 transition-colors text-white font-semibold rounded-md w-max focus:outline-none"
         >
           Track your recovery
