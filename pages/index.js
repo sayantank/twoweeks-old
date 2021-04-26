@@ -27,7 +27,13 @@ export default function Home() {
           onClick={
             session
               ? () => router.push("/track")
-              : () => signIn({ callbackUrl: "/track" })
+              : () =>
+                  signIn(null, {
+                    callbackUrl:
+                      process.env.NODE_ENV === "development"
+                        ? "http://localhost:3000/track"
+                        : "https://twoweeks.co.in/track",
+                  })
           }
           className="px-4 py-2 bg-green-400 hover:bg-green-500 transition-colors text-white font-semibold rounded-md w-max focus:outline-none"
         >
